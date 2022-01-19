@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    public Snake snake;
     public Collider2D bounds;
+    public AudioClip fruitSound;
+    public Transform particle;
+    AudioSource fruitSource;
 
     // Start is called before the first frame update
     void Start()
     {
         ChangePosition();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        fruitSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void ChangePosition()
@@ -30,8 +27,13 @@ public class Fruit : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            var _particle = Instantiate(particle);
+            var newPos = transform.position;
+            newPos.z -= 3;
+            _particle.position = newPos;
+            fruitSource.PlayOneShot(fruitSound);
             ChangePosition();
-            snake.Eat();
+            collider.gameObject.GetComponent<Snake>().Eat();
         }
     }
 }
