@@ -1,3 +1,8 @@
+# Snake
+Small Unity remake of Snake
+
+![Gameplay](snakegame.gif)
+
 # Sprites
 - https://www.kenney.nl/assets/pixel-ui-pack
 
